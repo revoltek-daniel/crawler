@@ -97,9 +97,10 @@ class tx_crawler_domain_process_manager  {
         }
         $this->startRequiredProcesses();
         $nextTimeOut = time() + $this->timeToLive;
+        $currentPendingItems = '';
         for ($i=0; $i<$timeout; $i++) {
             $currentPendingItems = $this->queueRepository->countAllPendingItems();
-            if ($this->startRequiredProcesses($this->verbose)) {
+            if ($this->startRequiredProcesses()) {
                 $nextTimeOut = time() + $this->timeToLive;
             }
             if ($currentPendingItems == 0) {

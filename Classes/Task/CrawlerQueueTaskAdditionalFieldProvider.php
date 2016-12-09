@@ -39,6 +39,9 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  */
 class CrawlerQueueTaskAdditionalFieldProvider implements AdditionalFieldProviderInterface
 {
+
+
+
     /**
      * Gets additional fields to render in the form to add/edit a task
      *
@@ -120,7 +123,8 @@ class CrawlerQueueTaskAdditionalFieldProvider implements AdditionalFieldProvider
         $fieldId = 'task_configuration';
         $fieldCode = '<select name="tx_scheduler[configuration][]" multiple="multiple" id="' . $fieldId . '">';
         $fieldCode .= "\t" . '<option value=""></option>';
-        for ($i = 0; $i < count($recordsArray); $i++) {
+        $arraySize = count($recordsArray);
+        for ($i = 0; $i < $arraySize; $i++) {
             $fieldCode .= "\t" . '<option ' . $this->getSelectedState($task->configuration, $recordsArray[$i]['name']) . 'value="' . $recordsArray[$i]['name'] . '">' . $recordsArray[$i]['name'] . '</option>';
         }
         $fieldCode .= '</select>';
